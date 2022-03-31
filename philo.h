@@ -6,51 +6,45 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 18:28:44 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/03/30 11:36:10 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/03/31 19:21:10 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <pthread.h>
 # include <sys/time.h>
 
-typedef struct  s_philo
+typedef struct s_philo
 {
-    int             id_philo;
-    pthread_t       id_thread;
-    pthread_t       id_death;
-    t_philo         *philo;
-    t_arguments     args;
-    pthread_mutex_t *right_fork;
-    pthread_mutex_t left_fork;
-    t_arguments     *pointer_arg;
-    long int        eat_ms;
-    unsigned int    eat_num;
-    int             end;
-}   t_philo;
+	pthread_t		id_thread;
+	int				id_philo;
+	int				num_philo;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				die;
+	int				eat_opt;
+	int				meal_opt;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	*send;
+	long int		start;
+	int long		end;
+}	t_philo;
 
-typedef struct s_arguments
-{
-    int             num_philo;
-    int             time_to_eat;
-    int             time_to_sleep;
-    int             eat_opt;
-    long int        starting;
-    int             philo_eat_end;
-    int             stop;
-    pthread_mutex_t write;
-}   t_arguments;
-
-
-void        ft_eating(t_philo *philo);
-void        ft_sleeping(t_philo *philo);
-void        ft_thinking(t_philo *philo);
-void	    ft_write(char *str, t_philo *philo);
-long int	get_time(void);
-void	    ft_usleep(long int delay);
+int			ft_atoi(const char *str);
+void		ft_eat(t_philo *philo);
+void		ft_sleep(t_philo *philo);
+void		ft_think(t_philo *philo);
+void		ft_forks(t_philo *philo);
+void		ft_is_dead(t_philo *philo);
+long int	time_in_ms(void);
+void		ft_usleep(long time);
+int			ft_check_is_death(t_philo *philo, int nphilos);
+void	destroy_mutexes(int num_philo, \
+    pthread_mutex_t *forks, pthread_mutex_t *send);
 
 #endif
