@@ -6,9 +6,10 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 18:28:38 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/03/29 14:49:33 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/03/31 19:28:05 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+int main(int ac, char **av)
