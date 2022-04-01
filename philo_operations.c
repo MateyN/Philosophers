@@ -6,7 +6,7 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 16:03:17 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/03/31 19:19:32 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/01 15:36:45 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ void	ft_forks(t_philo *philo)
 void	ft_is_dead(t_philo *philo)
 {
 	pthread_mutex_lock(philo->send);
-	printf("\033[0;31m%ld %d died\n", \
+	printf("%ld %d died\n", \
 		(time_in_ms() - philo->start), philo->id_philo);
 }
