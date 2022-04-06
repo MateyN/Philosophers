@@ -1,7 +1,7 @@
 SRCS		= philo.c philo_operations.c philo_utils.c utils.c threads.c init.c
 NAME		= philo
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=thread -pthread
 
 all:		$(NAME)
 $(NAME):	$(SRCS)
