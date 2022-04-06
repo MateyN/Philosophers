@@ -6,7 +6,7 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 16:03:17 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/01 16:26:29 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/06 10:17:50 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_eat(t_philo *philo)
 	pthread_mutex_unlock(philo->send);
 	philo->end = time_in_ms();
 	ft_usleep(philo->time_to_eat);
-	(philo->meal_opt)++;
+	(philo->count_meals)++;
 }
 
 void	ft_sleep(t_philo *philo)
