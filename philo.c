@@ -6,13 +6,40 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 18:28:38 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/01 16:17:51 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/06 10:18:23 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// TO DO when we have 6 arguments i.e number of times each philo eats (meal_optional())
+void    *meal_optional(void *arg)
+{
+    int i;
+    t_philo *philo;
+
+    philo = (t_philo *)arg;
+    while (1)
+    {
+        i = 0;
+        while (i < philo[i].num_philo)
+        {
+            if (time_in_ms() - philo[i].end > philo[i].die)
+            {
+                ft_is_dead(&(philo[i]));
+                destroy_mutexes(philo->forks, philo->send, philo->num_philo);
+                return (0);
+            }
+            if (philo[i].count_meals < philo[i].meal_opt)
+                break;
+            if (i == philo[i].num_philo - 1)
+            {
+                destroy_mutexes(philo->forks, philo->send, philo->num_philo);
+                return(NULL);
+            }
+            i++;
+        }
+    }
+}
 
 int main(int ac, char **av)
 {
