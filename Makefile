@@ -1,4 +1,4 @@
-SRCS		= philo.c philo_operations.c philo_utils.c utils.c threads.c
+SRCS		= philo.c philo_operations.c philo_utils.c utils.c threads.c init.c
 NAME		= philo
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
