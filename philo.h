@@ -6,7 +6,7 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 18:28:44 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/09 11:22:53 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/09 13:20:50 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void        ft_threads(t_philo *philo, int num_philo);
 void    	ft_init_data(t_philo *philo, int ac, char **av, int num_philo);
 void		*meal_optional(void *arg);
 void        *routine(void *arg);
-long 		time_in_ms(void);
+long int	time_in_ms(void);
 void		ft_usleep(long time);
 int			ft_check_is_death(t_philo *philo, int nphilos);
 int         check_is_number(char **av);

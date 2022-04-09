@@ -6,7 +6,7 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 16:03:17 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/09 13:08:45 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/09 13:22:31 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_sleep(t_philo *philo)
 void	ft_think(t_philo *philo)
 {
 	pthread_mutex_lock(philo->send);
-	printf("\033[0;34m%ld %d is thinking\n\033[0m", \
+	printf("\033[0;35m%ld %d is thinking\n\033[0m", \
 		(time_in_ms() - philo->start), philo->id_philo);
 	pthread_mutex_unlock(philo->send);
 }
