@@ -6,7 +6,7 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 18:28:38 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/09 12:58:09 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/09 15:24:37 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,5 @@ int main(int ac, char **av)
         if (!ft_check_is_death(philo, num_philo))
             return (0);
     }
+    free(philo);
 }

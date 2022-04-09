@@ -6,13 +6,15 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 18:28:44 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/09 13:20:50 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/09 16:55:11 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+# define TRUE 1
+# define FALSE 0
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
