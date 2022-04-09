@@ -6,7 +6,7 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 18:28:38 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/06 10:30:46 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/09 12:58:09 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ void    *meal_optional(void *arg)
         i = 0;
         while (i < philo[i].num_philo)
         {
-            if (time_in_ms() - philo[i].end > philo[i].die)
+            if (time_in_ms() - philo[i].end > philo[i].time_to_die)
             {
                 ft_is_dead(&(philo[i]));
-                destroy_mutexes(philo->forks, philo->send, philo->num_philo);
+                destroy_mutexes(philo->num_philo, philo->forks, philo->send);
                 return (0);
             }
             if (philo[i].count_meals < philo[i].meal_opt)
                 break;
             if (i == philo[i].num_philo - 1)
             {
-                destroy_mutexes(philo->forks, philo->send, philo->num_philo);
+                destroy_mutexes(philo->num_philo, philo->forks, philo->send);
                 return(NULL);
             }
             i++;
@@ -47,22 +47,23 @@ int main(int ac, char **av)
     t_philo     *philo;
     pthread_t   id;
 
-    if(ac < 5 || ac > 6 || check_is_number(av))
+    if (ac < 5 || ac > 6 || check_is_number(av))
     {
         printf("Arguments error\n");
         exit(1);
     }
     num_philo = ft_atoi(av[1]);
     philo = malloc(num_philo * sizeof(t_philo));
-    if(ac == 6)
+    ft_init_data(philo, ac, av, num_philo);
+    if (ac == 6)
     {
         pthread_create(&id, NULL, &meal_optional, philo);
-        if(pthread_join(id, NULL) == 0)
+        if (pthread_join(id, NULL) == 0)
             return (0);
     }
-    while(1)
+    while (1)
     {
-        if(!ft_check_is_death(philo, num_philo))
+        if (!ft_check_is_death(philo, num_philo))
             return (0);
     }
 }
