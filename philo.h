@@ -6,7 +6,7 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 18:28:44 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/06 10:20:24 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/09 11:22:53 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_philo
 	int				num_philo;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int				die;
+	int				time_to_die;
 	int				meal_opt;
 	int				count_meals;
 	pthread_mutex_t	*forks;
@@ -42,9 +42,10 @@ void		ft_think(t_philo *philo);
 void		ft_forks(t_philo *philo);
 void		ft_is_dead(t_philo *philo);
 void        ft_threads(t_philo *philo, int num_philo);
+void    	ft_init_data(t_philo *philo, int ac, char **av, int num_philo);
 void		*meal_optional(void *arg);
 void        *routine(void *arg);
-long int	time_in_ms(void);
+long 		time_in_ms(void);
 void		ft_usleep(long time);
 int			ft_check_is_death(t_philo *philo, int nphilos);
 int         check_is_number(char **av);

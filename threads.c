@@ -6,7 +6,7 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:26:55 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/01 16:04:59 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/09 12:57:44 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,15 @@ void    *routine(void *arg)
     {
         pthread_mutex_lock(&(philo->forks[philo->id_philo - 1]));
 		ft_forks(philo);
-		pthread_mutex_lock(&(philo->forks[philo->id_philo % philo->num_philo]));
+		pthread_mutex_lock(&(philo->forks[philo->id_philo \
+            % philo->num_philo]));
 		ft_forks(philo);
 		ft_eat(philo);
-		pthread_mutex_unlock(&(philo->forks[philo->id_philo % philo->num_philo]));
+		pthread_mutex_unlock(&(philo->forks[philo->id_philo \
+            % philo->num_philo]));
 		pthread_mutex_unlock(&(philo->forks[philo->id_philo - 1]));
 		ft_sleep(philo);
 		ft_think(philo);
     }
+    return (NULL);
 }

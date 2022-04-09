@@ -6,7 +6,7 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:38:05 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/01 15:52:17 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/09 11:22:50 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,4 @@ int ft_atoi(const char *str)
 		i++;
 	}
 	return (n * sign);
-}
-
-int check_is_number(char **av)
-{
-    int i;
-
-    i = 1;
-    while(av[i])
-    {
-        if(ft_atoi(av[i]) <= 0)
-            return (1);
-        i++;
-    }
-    return (0);
 }
