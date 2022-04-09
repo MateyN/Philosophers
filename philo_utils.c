@@ -6,7 +6,7 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:26:41 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/09 12:59:51 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/09 16:57:49 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ void	ft_usleep(long time)
 {
 	long int	start;
 
+	start = 0;
 	start = time_in_ms();
-	while (time_in_ms() - start < time)
-		usleep(100);
+	while ((time_in_ms() - start) < time)
+		usleep(time / 10);
 }
 
 void	destroy_mutexes(int num_philo, \
@@ -52,14 +53,14 @@ int ft_check_is_death(t_philo *philo, int num_philo)
 	i = 0;
 	while (i < num_philo)
 	{
-		if (time_in_ms() - philo[i].end > philo[i].time_to_die)
+		if (time_in_ms() + 10 - philo[i].end > philo[i].time_to_die)
 		{
 			ft_is_dead(&(philo[i]));
 			destroy_mutexes(philo->num_philo, philo->forks, philo->send);
 			return (0);
 		}
 	}
-	return (1);
+	return (0);
 }
 
 int	check_is_number(char **av)
