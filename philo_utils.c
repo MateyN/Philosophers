@@ -53,7 +53,7 @@ int ft_check_is_death(t_philo *philo, int num_philo)
 	i = 0;
 	while (i < num_philo)
 	{
-		if (time_in_ms() + 10 - philo[i].end > philo[i].time_to_die)
+		if (time_in_ms() + 1 - philo[i].end > philo[i].time_to_die)
 		{
 			ft_is_dead(&(philo[i]));
 			destroy_mutexes(philo->num_philo, philo->forks, philo->send);
