@@ -1,6 +1,13 @@
 # Philosophers - 42 school project
 This project is a training to multi-threads/multi-process programming with the use of mutex and semaphore.  
-It contains a program simulating a twist of the famous Dining Philosophers problem.  
+It contains a program simulating a twist of the famous Dining Philosophers problem.
+
+[![42](https://img.shields.io/badge/BornToCode-2_Circle-00babc?style=flat-square&logo=42)](https://42lausanne.ch/)
+
+[![last-commit](https://img.shields.io/github/last-commit/MateyN/Philosophers?style=flat-square)](https://github.com/MateyN/Philosophers)
+
+[![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
 # Rules
 ```
