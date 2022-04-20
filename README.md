@@ -1,6 +1,13 @@
 # Philosophers - 42 school project
 This project is a training to multi-threads/multi-process programming with the use of mutex and semaphore.  
-It contains a program simulating a twist of the famous Dining Philosophers problem.  
+It contains a program simulating a twist of the famous Dining Philosophers problem.
+
+[![42](https://img.shields.io/badge/BornToCode-2_Circle-00babc?style=flat-square&logo=42)](https://42lausanne.ch/)
+
+[![last-commit](https://img.shields.io/github/last-commit/MateyN/Philosophers?style=flat-square)](https://github.com/MateyN/Philosophers)
+
+[![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
 # Rules
 ```
@@ -74,3 +81,20 @@ will print its death.
 
 • Again, philosophers should avoid to die!
 ```
+# Example
+
+![Alt text](https://github.com/MateyN/Philosophers/blob/master/example.png)
+
+# Building and running the project
+
+1. Download/Clone this repo
+
+        git clone git@github.com:MateyN/Philosophers.git
+2. `cd` into the root directory and run `make`
+
+3.  run `./philo arg1 arg2 arg3 arg4 (arg5)`
+    - arg1 is the number of philosopher
+    - arg2 is the time to die in ms
+    - arg3 is the time to eat in ms
+    - arg4 is the time to sleep in ms
+    - arg5 (optional) is the number of time each philosopher needs to eat to end the simulation
