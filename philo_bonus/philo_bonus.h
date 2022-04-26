@@ -6,7 +6,7 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:07:38 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/20 12:18:03 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/26 10:55:03 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,19 @@ typedef struct s_philo
     int         time_to_eat;
     int         meal_opt;
     int         count_meals;
+    int         args;
     sem_t       *forks;
     sem_t       *send;
     long int    start;
     int long    end;
 }   t_philo;
 
+int         ft_atoi(const char *str);
 void        ft_eat(t_philo *philo);
 void        ft_sleep(t_philo *philo);
 void        ft_think(t_philo *philo);
 void        ft_forks(t_philo *philo);
-void        ft_is_dead(t_philo *philo);
+void	    ft_usleep(long time);
 void        ft_init_args(t_philo *philo, int ac, char **av);
 void        ft_init_data(t_philo *philo, int ac, char **av, int num_philo);
 void        ft_create_process(t_philo *philo, int num_philo);

@@ -6,7 +6,7 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:16:16 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/20 12:19:14 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/22 12:23:47 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void    *check_is_dead(void *arg)
     philo = (t_philo *)arg;
     while (1)
     {
-        if (time_in_ms() - philo->end > philo->time_to_die)
+        if (time_in_ms() + 1 - philo->end > philo->time_to_die)
         {
             sem_wait(philo->send);
             printf("\033[0;31m%ld %d died\n\033[0m", \
@@ -55,15 +55,20 @@ void    routine(t_philo *philo)
     while (1)
     {
         sem_wait(philo->forks);
-        ft_forks(philo);
-        sem_post(philo->send);
-        sem_wait(philo->forks);
-        ft_forks(philo);
-        sem_post(philo->send);
-        ft_eat(philo);
-        sem_post(philo->forks);
-        ft_sleep(philo);
-        ft_think(philo);
+		sem_wait(philo->send);
+		printf("%ld %d has take a fork\n", \
+			(time_in_ms() - philo->start), philo->id_philo);
+		sem_post(philo->send);
+		sem_wait(philo->forks);
+		sem_wait(philo->send);
+		printf("%ld %d has take a fork\n", \
+			(time_in_ms() - philo->start), philo->id_philo);
+		sem_post(philo->send);
+		ft_eat(philo);
+		sem_post(philo->forks);
+		sem_post(philo->forks);
+		ft_sleep(philo);
+		ft_think(philo);
     }
 }
 
@@ -82,6 +87,7 @@ int main(int ac, char **av)
     num_philo = ft_atoi(av[1]);
     philo = malloc(num_philo * sizeof(t_philo));
     ft_init_data(philo, ac, av, num_philo);
+    i = 0;
     while(i < num_philo)
     {
         waitpid(-1, &status, 0);

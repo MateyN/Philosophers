@@ -6,7 +6,7 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:15:41 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/20 11:42:49 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/26 11:03:52 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void    ft_init_args(t_philo *philo, int ac, char **av)
     philo->time_to_sleep = ft_atoi(av[4]);
     if (ac == 6)
         philo->meal_opt = ft_atoi(av[5]);
+		philo->count_meals = 0;
 }
 
 void    ft_init_data(t_philo *philo, int ac, char **av, int num_philo)
@@ -30,10 +31,10 @@ void    ft_init_data(t_philo *philo, int ac, char **av, int num_philo)
     
 	sem_unlink("/semaphore");
 	sem_unlink("/send");
-	send = sem_open("/send", O_CREAT | O_EXCL, 644, 1);
+	send = sem_open("/send", O_CREAT | O_EXCL, 0644, 1);
 	if (send == SEM_FAILED)
 		exit(1);
-	forks = sem_open("/semaphore", O_CREAT | O_EXCL, 644, num_philo);
+	forks = sem_open("/semaphore", O_CREAT | O_EXCL, 0644, num_philo);
 	if (forks == SEM_FAILED)
 		exit(1);
 	i = 0;
@@ -42,11 +43,11 @@ void    ft_init_data(t_philo *philo, int ac, char **av, int num_philo)
 		ft_init_args(&(philo[i]), ac, av);
 		philo[i].id_philo = i + 1;
 		philo[i].count_meals = 0;
-		philo[i].forks = forks;
+		philo[i].args = ac;
 		philo[i].send = send;
 		philo[i].start = time_in_ms();
 		philo[i].end = time_in_ms();
 		i++;
 	}
-	create_process(philo, num_philo);
+	ft_create_process(philo, num_philo);
 }
