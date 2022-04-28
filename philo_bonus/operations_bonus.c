@@ -6,7 +6,7 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:15:51 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/26 10:55:14 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/28 13:08:03 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void    ft_eat(t_philo *philo)
 		{
 			sem_post(philo->forks);
 			sem_post(philo->forks);
-			exit(2);
+			exit(1);
 		}
 	}
 }
@@ -54,4 +54,5 @@ void    ft_forks(t_philo *philo)
     sem_wait(philo->send);
     printf("%ld %d has take a fork\n", \
 		(time_in_ms() - philo->start), philo->id_philo);
+    sem_post(philo->send);
 }

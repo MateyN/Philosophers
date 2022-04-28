@@ -6,7 +6,7 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:16:16 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/22 12:23:47 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/27 12:53:39 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void    ft_create_process(t_philo *philo, int num_philo)
         philo[i].pid = fork();
         if (philo[i].pid == 0)
         {
-            routine(&philo[i]);
+            routine(&(philo[i]));
             exit(0);
         }
         i++;

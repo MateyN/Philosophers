@@ -6,7 +6,7 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:07:38 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/26 10:55:03 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/27 10:35:10 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void        ft_forks(t_philo *philo);
 void	    ft_usleep(long time);
 void        ft_init_args(t_philo *philo, int ac, char **av);
 void        ft_init_data(t_philo *philo, int ac, char **av, int num_philo);
+void        *check_is_dead(void *arg);
 void        ft_create_process(t_philo *philo, int num_philo);
 void        ft_kill_processors(t_philo *philo);
 int	        check_is_number(char **av);
