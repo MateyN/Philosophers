@@ -6,7 +6,7 @@
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:16:16 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/27 12:53:39 by mnikolov         ###   ########.fr       */
+/*   Updated: 2022/04/29 11:02:45 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,6 @@ void    ft_create_process(t_philo *philo, int num_philo)
             exit(0);
         }
         i++;
-    }
-}
-
-void    *check_is_dead(void *arg)
-{
-    t_philo *philo;
-
-    philo = (t_philo *)arg;
-    while (1)
-    {
-        if (time_in_ms() + 1 - philo->end > philo->time_to_die)
-        {
-            sem_wait(philo->send);
-            printf("\033[0;31m%ld %d died\n\033[0m", \
-		        (time_in_ms() - philo->start), philo->id_philo);
-            exit(0);
-        }
-        usleep(100);
     }
 }
 

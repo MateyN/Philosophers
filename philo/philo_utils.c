@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_bonus_utils.c                                :+:      :+:    :+:   */
+/*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnikolov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/13 13:15:59 by mnikolov          #+#    #+#             */
-/*   Updated: 2022/04/29 11:02:56 by mnikolov         ###   ########.fr       */
+/*   Created: 2022/03/30 11:26:41 by mnikolov          #+#    #+#             */
+/*   Updated: 2022/04/11 10:46:15 by mnikolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_bonus.h"
+#include "philo.h"
 
 long int	time_in_ms(void)
 {
@@ -32,34 +32,35 @@ void	ft_usleep(long time)
 		usleep(time / 10);
 }
 
-void    ft_kill_processors(t_philo *philo)
+void	destroy_mutexes(int num_philo, \
+    pthread_mutex_t *forks, pthread_mutex_t *send)
 {
     int i;
 
-    i = 0;
-    while (i < philo->num_philo)
-    {
-        kill(philo[i].pid, SIGKILL);
-        i++;
-    }
+	i = 0;
+	while (i < num_philo)
+	{
+		pthread_mutex_destroy(&(forks[i]));
+		i++;
+	}
+	pthread_mutex_destroy(send);
 }
 
-void    *check_is_dead(void *arg)
+int ft_check_is_death(t_philo *philo, int num_philo)
 {
-    t_philo *philo;
+	int	i;
 
-    philo = (t_philo *)arg;
-    while (1)
-    {
-        if (time_in_ms() + 1 - philo->end > philo->time_to_die)
-        {
-            sem_wait(philo->send);
-            printf("\033[0;31m%ld %d died\n\033[0m", \
-		        (time_in_ms() - philo->start), philo->id_philo);
-            exit(0);
-        }
-        usleep(100);
-    }
+	i = 0;
+	while (i < num_philo)
+	{
+		if (time_in_ms() + 1 - philo[i].end > philo[i].time_to_die)
+		{
+			ft_is_dead(&(philo[i]));
+			destroy_mutexes(philo->num_philo, philo->forks, philo->send);
+			return (0);
+		}
+	}
+	return (1);
 }
 
 int	check_is_number(char **av)
